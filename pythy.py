@@ -1,3 +1,5 @@
+# My First Program
+#Thank you
 def show_menu():
     print("===== Patient Manager =====")
     print("1. Add Patient")
