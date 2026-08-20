@@ -10,7 +10,11 @@ def show_menu():
 
 def add_patient(patients):       
     patient_name = input("Patient name: ")
-    patient_age = int(input("Patient age: "))
+    try:
+        patient_age = int(input("Patient age: "))
+    except ValueError:
+        print("Please enter a valid age!!")
+        return
     new_patient = {
         "name": patient_name,
         "age": patient_age
@@ -29,7 +33,11 @@ def show_patients(patients):
 def delete_patient(patients):
     for index,patient in enumerate(patients,1):
         print(f"{index}. {patient['name']} ({patient['age']} years)")      
-    del_patient_nu = int(input("Enter patient number to delete: "))
+    try:
+        del_patient_nu = int(input("Enter patient number to delete: "))
+    except ValueError:
+        print("Invalid Entry!!")
+        return
     if del_patient_nu < 1 or del_patient_nu > len(patients):
         print("Invalid Number.") 
     else:
