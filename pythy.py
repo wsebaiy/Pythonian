@@ -2,7 +2,7 @@
 
 def show_menu():
     print("===== Patient Manager =====")
-    print("1. Add Patient")
+    print("1. Add Patient")  
     print("2. Show all patients")
     print("3. Update patients")
     print("4. Delete Patient")
@@ -25,42 +25,42 @@ def add_patient(patients):
 
 def show_patients(patients):
     print("Showing patients..")
+    display_patients(patients)
+            
+
+def display_patients(patients):
     if not patients:
         print("No patients found.")
     else:
         for index,patient in enumerate(patients,1):
             print(f"{index}. {patient['name']} ({patient['age']} years)")
+
     
 def delete_patient(patients):
-    for index,patient in enumerate(patients,1):
-        print(f"{index}. {patient['name']} ({patient['age']} years)")      
+    display_patients(patients)
     try:
-        del_patient_nu = int(input("Enter patient number to delete: "))
+        del_patient_num= int(input("Enter patient number to delete: "))
     except ValueError:
         print("Invalid Entry!!")
         return
-    if del_patient_nu < 1 or del_patient_nu > len(patients):
+    if del_patient_num < 1 or del_patient_num > len(patients):
         print("Invalid Number.") 
     else:
-        print(f"{patients[del_patient_nu-1]['name']} deleted successfully!")
-        del(patients[del_patient_nu-1])
+        print(f"{patients[del_patient_num-1]['name']} deleted successfully!")
+        del(patients[del_patient_num-1])
 
 def update_patient(patients):
-    if not patients:
-        print("No patients found!")
-        return
-    for index,patient in enumerate(patients,1):
-        print(f"{index}. {patient['name']} ({patient['age']} years)")
+    display_patients(patients)
         
     try:
-        update_patient_nu = int(input("Enter patient number to update: ")) 
+        update_patient_num = int(input("Enter patient number to update: ")) 
     except ValueError:
         print("Invalid Entry.")
         return
-    if update_patient_nu < 1 or update_patient_nu > len(patients):
+    if update_patient_num < 1 or update_patient_num > len(patients):
         print("Invalid Number.") 
         return
-    patient_index = update_patient_nu -1
+    patient_index = update_patient_num -1
     new_name = input("New name: ")
     while True:
         try:
