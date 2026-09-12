@@ -1,4 +1,7 @@
 # My First Program
+import json
+
+
 
 def show_menu():
     print("===== Patient Manager =====")
@@ -21,6 +24,7 @@ def add_patient(patients):
         "age": patient_age
         }
     patients.append(new_patient)
+    save_patients(patients)
     print("Patient added successfully!")
 
 def show_patients(patients):
@@ -48,6 +52,7 @@ def delete_patient(patients):
     else:
         print(f"{patients[del_patient_num-1]['name']} deleted successfully!")
         del(patients[del_patient_num-1])
+        save_patients(patients)
 
 def update_patient(patients):
     display_patients(patients)
@@ -73,8 +78,15 @@ def update_patient(patients):
     patients[patient_index]["name"] = new_name
     patients[patient_index]["age"] = new_age
     print("\n")
+    save_patients(patients)
     print("Patient Updated Successfully!")
     return
+
+
+def save_patients(patients):
+    with open("patients.json","w") as file:
+        json.dump(patients,file,indent=4)
+
 
 
 
