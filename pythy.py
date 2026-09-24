@@ -87,10 +87,17 @@ def save_patients(patients):
     with open("patients.json","w") as file:
         json.dump(patients,file,indent=4)
 
+def load_patients():
+    try:
+        with open("patients.json","r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
 
 
 
-patients =[]
+
+patients =load_patients()
 while True:
     show_menu()
     choice = input("Choose an option: ")
